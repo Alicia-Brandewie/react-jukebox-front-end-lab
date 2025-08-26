@@ -6,7 +6,7 @@ const TrackForm = (props) => {
         artist: '',
     });
 
-    handleChange = (evt) => {
+const handleChange = (evt) => {
         setFormData({ ...formData, [evt.target.name]: evt.target.value });
     };
 

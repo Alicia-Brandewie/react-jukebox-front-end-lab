@@ -45,15 +45,16 @@ const App = () => {
     }
   };
 
+  
 
 
   return  (
   <>
-  {isFormOpen? (
-      <TrackForm
+  {isFormOpen ? (
+   <TrackForm
   handleAddTrack={handleAddTrack} />
   ) : (
-     <button onClick={handleFormView}
+<button onClick={handleFormView}
       >Add New Track</button>
   )
   }
@@ -61,8 +62,7 @@ const App = () => {
 
 
   <TrackList 
-  tracks={tracks} 
-  
+  tracks={tracks}
   />
   </>
   )
