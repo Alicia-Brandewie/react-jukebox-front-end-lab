@@ -28,11 +28,13 @@ const App = () => {
     setSelected(track);
     setIsFormOpen(false);
   };
-/////// add to create/Edit form
+  /////// add to create/Edit form
 
-  const handleFormView = () => {
+  const handleFormView = (track) => {
+    if (!track._id) setSelected(null);
     setIsFormOpen(!isFormOpen);
   };
+  ///for edit, not sure what this function is doing, or if comeing back to it later
 
   const handleAddTrack = async (formData) => {
     try {
@@ -45,26 +47,41 @@ const App = () => {
     }
   };
 
-  
+  const handleUpdateTrack = async (formData, trackId) => {
+    try {
+      const updatedTrack = await trackService.update(formData, trackId);
+      if (updatedTrack.err) {
+        throw new Error(updatedTrack.err);
+      }
+
+      const updatedTrackList = tracks.map((track) => (
+        track._id !== updatedTrack._id ? track : updatedTrack
+      ));
+      setTracks(updatedTrackList);
+      setIsFormOpen(false);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
 
-  return  (
-  <>
-  {isFormOpen ? (
-   <TrackForm
-  handleAddTrack={handleAddTrack} />
-  ) : (
-<button onClick={handleFormView}
-      >Add New Track</button>
-  )
-  }
-
-
-
-  <TrackList 
-  tracks={tracks}
-  />
-  </>
+  return (
+    <>
+      {isFormOpen ? (
+        <TrackForm
+          handleAddTrack={handleAddTrack} />
+      ) : (
+        <button onClick={handleFormView}
+        >Add New Track</button>
+      )
+      }
+      <TrackList
+        tracks={tracks}
+        handleFormView={handleFormView}
+        handleSelect={handleSelect}
+        handleUpdateTrack={handleUpdateTrack}
+      />
+    </>
   )
 };
 

@@ -11,7 +11,11 @@ const TrackList = (props) => {
                     <ul>
                         {props.tracks.map((track) => (
                             <li key={track._id}>{track.title}
-                                <button>Edit Track</button>
+
+                            
+                                <button 
+                                onClick={() => props.handleFormView(props.selected)}
+                                >Edit Track</button>
                             </li>
                         ))}
                     </ul>
