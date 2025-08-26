@@ -1,3 +1,6 @@
+import { useState } from "react";
+
+
 const TrackList = (props) => {
     console.log(props);
 
@@ -14,8 +17,10 @@ const TrackList = (props) => {
 
                             
                                 <button 
-                                onClick={() => props.handleFormView(props.selected)}
+                                onClick={() => props.handleFormView(track)}
                                 >Edit Track</button>
+                                          <button>Delete Track</button>
+
                             </li>
                         ))}
                     </ul>

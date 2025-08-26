@@ -34,7 +34,7 @@ const App = () => {
     if (!track._id) setSelected(null);
     setIsFormOpen(!isFormOpen);
   };
-  ///for edit, not sure what this function is doing, or if comeing back to it later
+  ///not happy about the null in the browser...
 
   const handleAddTrack = async (formData) => {
     try {
@@ -58,6 +58,7 @@ const App = () => {
         track._id !== updatedTrack._id ? track : updatedTrack
       ));
       setTracks(updatedTrackList);
+      setSelected(updatedTrack);
       setIsFormOpen(false);
     } catch (err) {
       console.log(err);
@@ -80,6 +81,7 @@ const App = () => {
         handleFormView={handleFormView}
         handleSelect={handleSelect}
         handleUpdateTrack={handleUpdateTrack}
+        selected={selected}
       />
     </>
   )

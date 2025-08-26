@@ -1,10 +1,13 @@
 import { useState } from "react";
 
 const TrackForm = (props) => {
-    const [formData, setFormData] = useState({
+    const initialState = {
         title: '',
         artist: '',
-    });
+    }
+    const [formData, setFormData] = useState(
+    props.selected ? props.selected : initialState
+  ) // unlcear if this is working post update or not
 
 const handleChange = (evt) => {
         setFormData({ ...formData, [evt.target.name]: evt.target.value });
@@ -34,7 +37,9 @@ const handleChange = (evt) => {
                     onChange={handleChange}
                     required
                 />
-                <button type='submit'>Add New Track</button>
+                <button type='submit'> 
+                    {props.selected ? 'Update Track' : 'Add New Track'}</button>
+          {/* the terinary not doing anything currently */}
             </form>
         </div>
 
