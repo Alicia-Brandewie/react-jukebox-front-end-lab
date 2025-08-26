@@ -9,6 +9,21 @@ const index = async () => {
     }
 };
 
+const create = async (FormData) => {
+    try {
+        const res = await fetch(BASE_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(FormData),
+        });
+        return res.json();
+    } catch (err) {
+        console.log(err);
+    }
+};
+
 
 
 
@@ -16,5 +31,6 @@ const index = async () => {
 console.log(await index());
 
 export {
-    index
+    index,
+    create
 };
