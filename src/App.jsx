@@ -3,11 +3,14 @@ import * as trackService from './services/trackService';
 
 import TrackList from './components/TrackList/TrackList';
 import TrackForm from './components/TrackForm/TrackForm';
+import NowPlaying from './components/NowPlaying/NowPlaying';
 
 const App = () => {
   const [tracks, setTracks] = useState([]);
   const [selected, setSelected] = useState(null);
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const [playing, setPlaying] = useState(null);
+  const [isNowPlayingOpen, setIsNowPlayingOpen] = useState(false);
 
   useEffect(() => {
     const fetchTracks = async () => {
@@ -26,9 +29,14 @@ const App = () => {
 
   const handleSelect = (track) => {
     setSelected(track);
-    setIsFormOpen(true); 
+    setIsFormOpen(true);
   };
-  /////// add to create/Edit form
+
+  const handleSelectPlay = (track) => {
+    setPlaying(track);
+    setIsNowPlayingOpen(true);
+  };
+
 
   const handleFormView = (track) => {
     if (!track._id) setSelected(null);
@@ -72,12 +80,12 @@ const App = () => {
       if (deletedTrack.err) {
         throw new Error(deletedTrack.err);
       }
-console.log('deleted:', deletedTrack)
+      console.log('deleted:', deletedTrack)
       setTracks(tracks.filter((track) => track._id !== deletedTrack._id));
       setSelected(null);
       isFormOpen(false);
 
-   } catch (err) {
+    } catch (err) {
       console.log(err);
     }
   };
@@ -88,9 +96,11 @@ console.log('deleted:', deletedTrack)
       {isFormOpen ? (
         <TrackForm
           selected={selected}
-        handleUpdateTrack={handleUpdateTrack}
-          handleAddTrack={handleAddTrack}           
-          />
+          handleUpdateTrack={handleUpdateTrack}
+          handleAddTrack={handleAddTrack}
+          handleSelectPlay={handleSelectPlay}
+
+        />
       ) : (
         <button onClick={handleFormView}
         >New Track</button>
@@ -103,8 +113,12 @@ console.log('deleted:', deletedTrack)
         isFormOpen={isFormOpen}
         handleUpdateTrack={handleUpdateTrack}
         handleDeleteTrack={handleDeleteTrack}
-        
       />
+      {isNowPlayingOpen ?
+        (<NowPlaying
+          handleSelectPlay={handleSelectPlay}
+          playing={playing}
+        />) : (false)}
     </>
   )
 };
