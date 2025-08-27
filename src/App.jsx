@@ -24,10 +24,10 @@ const App = () => {
     fetchTracks();
   }, []);
 
-  // const handleSelect = (track) => {
-  //   setSelected(track);
-  //   setIsFormOpen(true); 
-  // };
+  const handleSelect = (track) => {
+    setSelected(track);
+    setIsFormOpen(true); 
+  };
   /////// add to create/Edit form
 
   const handleFormView = (track) => {
@@ -58,7 +58,7 @@ const App = () => {
         track._id !== updatedTrack._id ? track : updatedTrack
       ));
       setTracks(updatedTrackList);
-      // setSelected(updatedTrack);
+      setSelected(updatedTrack);
       setIsFormOpen(false);
     } catch (err) {
       console.log(err);
@@ -74,7 +74,7 @@ const App = () => {
       }
 console.log('deleted:', deletedTrack)
       setTracks(tracks.filter((track) => track._id !== deletedTrack._id));
-      // setSelected(null);
+      setSelected(null);
       isFormOpen(false);
 
    } catch (err) {
@@ -83,12 +83,11 @@ console.log('deleted:', deletedTrack)
   };
 
 
-
   return (
     <>
       {isFormOpen ? (
         <TrackForm
-          // selected={selected}
+          selected={selected}
         handleUpdateTrack={handleUpdateTrack}
           handleAddTrack={handleAddTrack}           
           />
@@ -99,7 +98,7 @@ console.log('deleted:', deletedTrack)
       }
       <TrackList
         tracks={tracks}
-                // handleSelect={handleSelect}
+        handleSelect={handleSelect}
         handleFormView={handleFormView}
         isFormOpen={isFormOpen}
         handleUpdateTrack={handleUpdateTrack}

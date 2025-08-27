@@ -7,7 +7,7 @@ const TrackForm = (props) => {
     }
     const [formData, setFormData] = useState(
     props.selected ? props.selected : initialState
-  ) // unlcear if this is working post update or not
+  ) 
 
 const handleChange = (evt) => {
         setFormData({ ...formData, [evt.target.name]: evt.target.value });
@@ -21,7 +21,7 @@ const handleChange = (evt) => {
         props.handleAddTrack(formData);
      }
     };  
-    // unlcear if this is working post update or not
+    // working but must manually reload page
 
 
     return (
@@ -44,19 +44,12 @@ const handleChange = (evt) => {
                     required
                 />
                 <button type='submit'> 
-                    {props.selected ? 'Add New Track' : 'Update Track'}</button>
-          {/* the terinary not doing anything currently */}
+                    {props.selected ? 'Update Track' : 'Add New Track'}
+                    </button>
             </form>
         </div>
-
     );
-
-
-
 };
-
-
-
 
 
 export default TrackForm;

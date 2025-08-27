@@ -2,7 +2,7 @@ import { useState } from "react";
 
 
 const TrackList = (props) => {
-    console.log(props);
+    // console.log(props);
 
     return (
         <section>
@@ -17,7 +17,9 @@ const TrackList = (props) => {
 
                             
                                 <button 
-                                onClick={() => props.handleFormView(track._id)}
+                                // onClick={() => props.handleFormView(track._id)}
+                                onClick={() => props.handleSelect(track)}
+
                                 >Edit Track</button>
                                 <button
                                 onClick={() =>props.handleDeleteTrack(track._id)}>Delete Track</button>

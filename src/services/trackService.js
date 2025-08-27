@@ -26,7 +26,7 @@ const create = async (FormData) => {
 
 const update = async (FormData, trackId) => {
     try {
-        const res = await fetch(`${BASE_URL}/${track._id}`, {
+        const res = await fetch(`${BASE_URL}/${trackId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -43,6 +43,7 @@ const deleteTrack = async (trackId) => {
     try {
         const res = await fetch(`${BASE_URL}/${trackId}`,{
             method: 'DELETE',
+
         });
       return res.json();
     } catch (err) {
