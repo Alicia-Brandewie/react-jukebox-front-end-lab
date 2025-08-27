@@ -15,8 +15,14 @@ const handleChange = (evt) => {
 
     const handleSubmit = (evt) => {
         evt.preventDefault();
+     if (props.selected) {
+       props.handleUpdateTrack(formData, props.selected._id);
+     } else {
         props.handleAddTrack(formData);
-    };
+     }
+    };  
+    // unlcear if this is working post update or not
+
 
     return (
         <div>
@@ -38,7 +44,7 @@ const handleChange = (evt) => {
                     required
                 />
                 <button type='submit'> 
-                    {props.selected ? 'Update Track' : 'Add New Track'}</button>
+                    {props.selected ? 'Add New Track' : 'Update Track'}</button>
           {/* the terinary not doing anything currently */}
             </form>
         </div>

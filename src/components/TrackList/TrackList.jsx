@@ -17,9 +17,10 @@ const TrackList = (props) => {
 
                             
                                 <button 
-                                onClick={() => props.handleFormView(track)}
+                                onClick={() => props.handleFormView(track._id)}
                                 >Edit Track</button>
-                                          <button>Delete Track</button>
+                                <button
+                                onClick={() =>props.handleDeleteTrack(track._id)}>Delete Track</button>
 
                             </li>
                         ))}
