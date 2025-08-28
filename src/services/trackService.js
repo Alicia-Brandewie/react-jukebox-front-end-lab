@@ -41,19 +41,16 @@ const update = async (FormData, trackId) => {
 
 const deleteTrack = async (trackId) => {
     try {
-        const res = await fetch(`${BASE_URL}/${trackId}`,{
+        const res = await fetch(`${BASE_URL}/${trackId}`, {
             method: 'DELETE',
-
         });
-      return res.json();
+        return res.json();
     } catch (err) {
         console.log(err);
     }
 };
 
-
-
-console.log(await index());
+// console.log(await index());
 
 export {
     index,

@@ -37,12 +37,10 @@ const App = () => {
     setIsNowPlayingOpen(true);
   };
 
-
   const handleFormView = (track) => {
     if (!track._id) setSelected(null);
     setIsFormOpen(!isFormOpen);
   };
-  ///not happy about the null in the browser...
 
   const handleAddTrack = async (formData) => {
     try {
@@ -61,12 +59,8 @@ const App = () => {
       if (updatedTrack.err) {
         throw new Error(updatedTrack.err);
       }
-
-      const updatedTrackList = tracks.map((track) => (
-        track._id !== updatedTrack._id ? track : updatedTrack
-      ));
-      setTracks(updatedTrackList);
-      setSelected(updatedTrack);
+      setTracks(tracks);
+      setSelected(null);
       setIsFormOpen(false);
     } catch (err) {
       console.log(err);
@@ -84,12 +78,10 @@ const App = () => {
       setTracks(tracks.filter((track) => track._id !== deletedTrack._id));
       setSelected(null);
       setIsFormOpen(false);
-
     } catch (err) {
       console.log(err);
     }
   };
-
 
   return (
     <>
@@ -98,7 +90,6 @@ const App = () => {
           selected={selected}
           handleUpdateTrack={handleUpdateTrack}
           handleAddTrack={handleAddTrack}
-
         />
       ) : (
         <button onClick={handleFormView}
@@ -110,14 +101,12 @@ const App = () => {
         handleSelect={handleSelect}
         handleFormView={handleFormView}
         isFormOpen={isFormOpen}
-        handleUpdateTrack={handleUpdateTrack}
         handleDeleteTrack={handleDeleteTrack}
-                  handleSelectPlay={handleSelectPlay}
-
+        handleSelectPlay={handleSelectPlay}
       />
+
       {isNowPlayingOpen ?
         (<NowPlaying
-          // handleSelectPlay={handleSelectPlay}
           playing={playing}
         />) : (false)}
     </>
