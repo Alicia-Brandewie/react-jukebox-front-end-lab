@@ -14,7 +14,7 @@ const TrackList = (props) => {
 
                                 <button
                                 onClick={() => props.handleSelectPlay(track)}
-                                >Play</button>
+                                >▶ Play</button>
 
                                 <button 
                                 // onClick={() => props.handleFormView(track._id)}

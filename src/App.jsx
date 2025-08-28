@@ -83,7 +83,7 @@ const App = () => {
       console.log('deleted:', deletedTrack)
       setTracks(tracks.filter((track) => track._id !== deletedTrack._id));
       setSelected(null);
-      isFormOpen(false);
+      setIsFormOpen(false);
 
     } catch (err) {
       console.log(err);
@@ -98,7 +98,6 @@ const App = () => {
           selected={selected}
           handleUpdateTrack={handleUpdateTrack}
           handleAddTrack={handleAddTrack}
-          handleSelectPlay={handleSelectPlay}
 
         />
       ) : (
@@ -113,10 +112,12 @@ const App = () => {
         isFormOpen={isFormOpen}
         handleUpdateTrack={handleUpdateTrack}
         handleDeleteTrack={handleDeleteTrack}
+                  handleSelectPlay={handleSelectPlay}
+
       />
       {isNowPlayingOpen ?
         (<NowPlaying
-          handleSelectPlay={handleSelectPlay}
+          // handleSelectPlay={handleSelectPlay}
           playing={playing}
         />) : (false)}
     </>

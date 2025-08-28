@@ -2,10 +2,11 @@ import { useState } from "react";
 
 const NowPlaying = (props) => {
     
+    console.log(props.playing)
     return (
         <>
-       <h1>Now Playing:</h1>
-       <p>{props.playing}</p>
+       <h2>Now Playing ▶</h2>
+       <h3>Title {props.playing.title}</h3>
 </>
     )
     
